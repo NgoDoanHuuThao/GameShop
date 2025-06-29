@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GameShop.Models.ViewModels.OrderViewModel>
+<h2 class="mt-4 mb-3">List your orders</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Thời Gian</th>
+            <th>Chi Tiết</th>
+            <th>Địa Chỉ </th>
+            <th>Tổng Tiền</th>
+            <th>Trạng Thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            var index = 1;
+            foreach (var order in Model)
+            {
+                <tr>
+                    <td>@index</td>
+                    <td>@order.OrderDate.ToString("dd/MM/yyyy h:mm:ss tt")</td>
+                    <td>
+                        @foreach (var detail in order.Details)
+                        {
+                            <div class="d-flex align-items-center mb-1">
+                                <img src="@detail.ImageUrl" width="50" height="50" class="me-2" />
+                                <span>@detail.Quantity x @detail.ProductName = @String.Format("{0:N0} ₫", detail.Price)</span>
+                            </div>
+                        }
+                    </td>
+                    <td>@order.ShippingAddress</td>
+                    <td>@String.Format("{0:N0} ₫", order.Total)</td>
+                    <td>@order.Status</td>
+                </tr>
+                index++;
+            }
+        }
+    </tbody>
+</table>

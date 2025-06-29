@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GameShop.Models.Product> 
+<div class="row mt-4">
+            @foreach (var item in Model)
+            {
+                <div class="item features-image col-12 col-md-6 col-lg-4">
+                    <div class="item-wrapper">
+                        <div class="item-img">
+                            <img src="@item.ImageUrl" alt="@item.Name" />
+                        </div>
+                        <div class="item-content">
+                            <h6 class="item-subtitle mbr-fonts-style mt-1 display-7">
+                                <strong>@item.Name</strong>
+                            </h6>
+                            <p class="mbr-text mbr-fonts-style display-7">
+                                @String.Format("{0:N0} ₫", item.Price)
+                            </p>
+                        </div>
+                        <div class="mbr-section-btn item-footer mt-2">
+                            <a href="/ShoppingCart/AddToCart/@item.Id" class="btn btn-primary item-btn display-4">
+                                <span class="mbrib-cart-add mbr-iconfont mbr-iconfont-btn"></span>Thêm Vào Giỏ Hàng
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>

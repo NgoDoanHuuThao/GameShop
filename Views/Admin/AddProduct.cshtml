@@ -1,0 +1,46 @@
+﻿
+@model GameShop.Models.Product
+@{
+    ViewData["Title"] = "Thêm sản phẩm mới";
+}
+
+<div class="container mt-5" style="max-width: 700px">
+    <h2 class="mb-4">Thêm sản phẩm mới</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">@ViewBag.Message</div>
+    }
+
+    <form asp-action="AddProduct" method="post">
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Detail"></label>
+            <textarea asp-for="Detail" class="form-control"></textarea>
+            <span asp-validation-for="Detail" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ImageUrl"></label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+        <div class="form-check mb-3">
+            <input asp-for="IsTrendingProduct" class="form-check-input" />
+            <label asp-for="IsTrendingProduct" class="form-check-label"></label>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
